@@ -68,10 +68,12 @@ public class EmailClient extends Application {
         String rcptTo = tfRcptTo.getText();
         String data = tfData.getText();
 
+        String ip = "81.3.6.162";
+
         // Create a loan object. Loan defined in Listing 10.2
         Email email = new Email(mailFrom, rcptTo, data);
 
-        EmailSender sender = new EmailSender(email);
+        EmailSender sender = new EmailSender(email, ip);
         sender.sendEmail();
     }
 

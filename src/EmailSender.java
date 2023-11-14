@@ -4,15 +4,17 @@ import java.net.*;
 public class EmailSender
 {
     Email email;
+    String ip;
 
-    EmailSender (Email newEmail){
+    EmailSender (Email newEmail, String ip){
         this.email = newEmail;
+        this.ip = ip;
     }
 
     public void sendEmail() throws Exception
     {
         // Establish a TCP connection with the mail server.
-        Socket socket = new Socket("mail.tutanota.de", 25);
+        Socket socket = new Socket(ip, 25);
 
 
         // Create a BufferedReader to read a line at a time.
