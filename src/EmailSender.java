@@ -12,7 +12,7 @@ public class EmailSender
     public void sendEmail() throws Exception
     {
         // Establish a TCP connection with the mail server.
-        Socket socket = new Socket("ASPMX.L.GOOGLE.COM", 25);
+        Socket socket = new Socket("mail.tutanota.de", 25);
 
 
         // Create a BufferedReader to read a line at a time.
@@ -70,8 +70,8 @@ public class EmailSender
         String period = ".\r\n";
         System.out.print(period);
         os.write(period.getBytes("US-ASCII"));
-        response = br.readLine();
-        System.out.println(response + br.readLine() + br.readLine());
+        //response = br.readLine();
+        //System.out.println(response + br.readLine() + br.readLine());
 
         // Send QUIT command.
         String quit = "QUIT\r\n";
