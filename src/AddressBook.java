@@ -41,14 +41,23 @@ public class AddressBook {
         }
     }
 
+    public boolean checkForMatch(String name){
+        if(book.containsKey(name)){
+            return true;
+        }
+        else return false;
+    }
+
     public String getAddress(String nickname){
         return (book.get(nickname));
     }
+
     public int addAddress(String nickname, String address){
         book.put(nickname, address);
         writeAddressBook();
         return 1;
     }
+
     public int removeAddress(String nickname){
         book.remove(nickname);
         writeAddressBook();

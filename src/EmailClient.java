@@ -14,8 +14,14 @@ public class EmailClient extends Application {
     private TextField tfData = new TextField();
     private Button btSend = new Button("Send");
 
+    //instantiate address book
+    AddressBook ab = new AddressBook();
+
     @Override // Override the start method in the Application class
     public void start(Stage primaryStage) {
+        //add any name/address pairs to the book
+        ab.addAddress("nickname", "email");
+
         // Create UI
         GridPane gridPane = new GridPane();
         gridPane.setHgap(5);
@@ -44,17 +50,6 @@ public class EmailClient extends Application {
             }
         });
 
-    /*
-    btCalculate.setOnAction(new EventHandler<ActionEvent>(){
-      @Override
-      public void handle(ActionEvent e) {
-        calculateLoanPayment();
-      }
-    });
-
-    */
-
-
         // Create a scene and place it in the stage
         Scene scene = new Scene(gridPane, 400, 250);
         primaryStage.setTitle("Email Client"); // Set title
@@ -67,6 +62,16 @@ public class EmailClient extends Application {
         String mailFrom = tfMailFrom.getText();
         String rcptTo = tfRcptTo.getText();
         String data = tfData.getText();
+
+        //Check if either of the address fields includes a stored nickname
+        if(ab.checkForMatch(mailFrom)){
+            mailFrom = ab.getAddress(mailFrom);
+            tfMailFrom.setText(mailFrom);
+        }
+        if(ab.checkForMatch(rcptTo)){
+            rcptTo = ab.getAddress(rcptTo);
+            tfRcptTo.setText(rcptTo);
+        }
 
         String ip = "81.3.6.162";
 
